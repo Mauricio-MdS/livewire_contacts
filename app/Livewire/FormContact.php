@@ -15,22 +15,33 @@ class FormContact extends Component
     public $email;
     #[Validate('required|min:5|max:20')]
     public $phone;
+    public $error = '';
+    public $success = '';
+
 
     public function newContact()
     {
         $this->validate();
 
         // store contact in database
-        Contact::firstOrCreate([
-            'name' => $this->name,
-            'email' => $this->email,
-        ],
-        [
-            'phone' => $this->phone,
-        ]);
+        $result = Contact::firstOrCreate(
+            [
+                'name' => $this->name,
+                'email' => $this->email,
+            ],
+            [
+                'phone' => $this->phone,
+            ]
+        );
 
-        // clear form
-        $this->reset();
+        if ($result->wasRecentlyCreated) {
+            // clear all public properties
+            $this->reset();
+
+            $this->success = 'Contact created successfully';
+        } else {
+            $this->error = 'Contact already exists';
+        }
     }
     public function render()
     {
