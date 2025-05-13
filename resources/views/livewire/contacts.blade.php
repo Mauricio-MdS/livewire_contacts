@@ -1,7 +1,15 @@
 <div class="card p-5">
-    <h3>CONTACTS</h3>
+    <div class="d-flex justify-content-between mb-3">
+        <div>
+            <h3>CONTACTS</h3>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+            <span>Search: </span>
+            <input type="text" class="form-control form-control-sm" wire:model.live="search">
+        </div>
+    </div>
+
     <hr>
-    <p class="mb-3">Contacts</p>
 
     @if ($contacts->count() === 0)
         <div class="opacity-50">No contacts found</div>
