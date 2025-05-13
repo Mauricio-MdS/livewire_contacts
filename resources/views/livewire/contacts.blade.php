@@ -29,6 +29,9 @@
                 </div>
             </div>
         @endforeach
+        <div>
+            {{ $contacts->links() }}
+        </div>
     @endif
 
 </div>
