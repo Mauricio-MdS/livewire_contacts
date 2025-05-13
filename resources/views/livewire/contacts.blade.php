@@ -1,4 +1,6 @@
 <div class="card p-5">
+    <h3>CONTACTS</h3>
+    <hr>
     <p class="mb-3">Contacts</p>
 
     @if ($contacts->count() === 0)
@@ -17,6 +19,9 @@
                         Phone: {{ $contact->phone }}
                     </div>
                     <div class="col">
+                        <a href="{{ route('contacts.edit', ['id' => $contact->id]) }}" class="btn btn-sm btn-success">
+                            Edit
+                        </a>
                         <a href="{{ route('contacts.delete', ['id' => $contact->id]) }}" class="btn btn-sm btn-danger">
                             Delete
                         </a>
